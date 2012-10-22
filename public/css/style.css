@@ -1,0 +1,36 @@
+#content {
+	margin: 41px 0px;
+}
+
+.navbar .navbar-inner .brand {
+	float: none !important;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.btn {
+	padding: 0px 0px;
+}
+
+.btn a {
+	display: block;
+}
+
+.navbar .navbar-inner li a {
+	text-align: center;
+}
+
+.navbar .navbar-inner li a i {
+	display: table;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.table td {
+	vertical-align: middle;
+}
+
+.container, .navbar-static-top .container, .navbar-fixed-top .container, .navbar-fixed-bottom .container {
+	width: auto;
+}
