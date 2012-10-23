@@ -31,4 +31,4 @@ unset($web);
 // --------------------------------------------------------------
 // Launch Laravel.
 // --------------------------------------------------------------
-require path('sys').'../laravel/laravel.php';
+require path('sys').'laravel.php';
