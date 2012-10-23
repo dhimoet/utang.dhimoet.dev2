@@ -79,9 +79,9 @@ class Crypter {
 		// There are various sources from which we can get random numbers
 		// but some are more random than others. We'll choose the most
 		// random source we can for this server environment.
-		if (defined('MCRYPT_RAND'))
+		if (defined('MCRYPT_DEV_URANDOM'))
 		{
-			return MCRYPT_RAND;
+			return MCRYPT_DEV_URANDOM;
 		}
 		elseif (defined('MCRYPT_DEV_RANDOM'))
 		{
