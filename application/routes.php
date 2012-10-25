@@ -31,7 +31,7 @@
 |		});
 |
 */
-
+Route::controller(Controller::detect());
 Route::get('/', function()
 {
 	return View::make('app.index');
@@ -107,5 +107,5 @@ Route::filter('csrf', function()
 
 Route::filter('auth', function()
 {
-	if (Auth::guest()) return Redirect::to('login');
+	if (Auth::guest()) return Redirect::to('/app/login');
 });

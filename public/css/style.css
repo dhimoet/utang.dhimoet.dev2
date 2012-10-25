@@ -31,6 +31,20 @@
 	vertical-align: middle;
 }
 
-.container, .navbar-static-top .container, .navbar-fixed-top .container, .navbar-fixed-bottom .container {
+.container, 
+.navbar-static-top .container, 
+.navbar-fixed-top .container, 
+.navbar-fixed-bottom .container {
 	width: auto;
+}
+
+.centered_container {
+	height: 300px;
+}
+
+.centered {
+	text-align: center;
+	margin-left: auto !important;
+	margin-right: auto !important;
+	vertical-align: middle;
 }
