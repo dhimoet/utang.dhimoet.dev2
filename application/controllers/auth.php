@@ -23,34 +23,30 @@ class Auth_Controller extends Base_Controller {
 			// if yes - log the user in
 			$user_id = User::get_user_id_by_fb_uid($fb_uid);
 			Auth::login($user_id);
-			
-			return 'logged in';
 		}
-		else {
-			// if no - get login url
-			return Facebook::get_login_url();
-		}
+		$user = User::find($user_id);
+		// creating a response object
+		$response = new User;
+		$response->id = $user->id;
+		$response->username = $user->username;
+		$response->email = $user->email;
+		$response->facebook_user_id = $user->facebook_user_id;
+		// backbone only receive array response
+		return Response::json($response->to_array());
 	}
+	
 	
 	public function get_logout()
 	{
+		// logout from facebook
+		// clear session
 		$fb_uid = Facebook::get_user_id();
 		// check if user is logged in on facebook
 		if($fb_uid) {
-			// if yes - get the logout url
-			Auth::logout();
-			return Facebook::get_logout_url();
+			// if yes - log the user in
+			$user_id = User::get_user_id_by_fb_uid($fb_uid);
+			Auth::logout($user_id);
 		}
-		else {
-			// if no
-			return 'logged out';
-		}
-	}
-	
-	public function post_logout()
-	{
-		// logout from facebook
-		// clear session
-		// redirect to login page
+		return Response::json(Auth::check());
 	}
 }

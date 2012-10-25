@@ -9,7 +9,8 @@ require.config({
 	    underscore: 'libs/underscore',
 	    backbone: 'libs/backbone',
 	    bootstrap: 'libs/bootstrap',
-	    text: 'libs/text'
+	    text: 'libs/text',
+	    facebook: 'facebook'
   	},
   	shim: {
 	    backbone: {

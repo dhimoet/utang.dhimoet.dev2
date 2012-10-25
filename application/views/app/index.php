@@ -10,8 +10,10 @@
 	<script data-main="/js/main" src="/js/libs/require.js"></script>
 	<!-- page title -->
 	<title>UtangApp</title>
+	<!-- dynamic scripts -->
 </head>
 <body>
+	<div id="fb-root"></div>
 	<div class="container">
 		<section id="header" class="navbar navbar-fixed-top"></section>
 		
