@@ -8,6 +8,5 @@ define([
 		model: UserModel,
 		url: "/auth/login"
 	});
-	// You don't usually return a collection instantiated
 	return UserCollection;
 });

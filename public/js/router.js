@@ -4,61 +4,29 @@ define([
   	'underscore',
   	'backbone',
   	'facebook',
-  	'views/LoginView',
   	'views/HeaderView',
   	'views/FooterView',
-  	'views/HomeView'
-], function($, _, Backbone, FB, LoginView, HeaderView, FooterView, HomeView){
+  	'views/MainView'
+], function($, _, Backbone, FB, HeaderView, FooterView, MainView){
   	var AppRouter = Backbone.Router.extend({
   		initialize: function() {
   			console.log('router.js loaded');
-  			
   			// initialize views
 			this.headerView = new HeaderView();
 			this.footerView = new FooterView();
-			this.homeView = new HomeView();
+			this.mainView = new MainView();
   		},
-  		isLoggedIn: function() {
-			// check if user is logged in
-			if(0) {
-				// if yes - proceed
-				return true;
-			}
-			else {
-				// if not - redirect to login page
-				window.location.href = "#/login";
-				return false;
-			}
-		},
-  		
   		/**
   		 * 	List of routes and handlers
   		 */
     	routes: {
-    		'login'		: 'showLogin',
-    		'logout'	: 'showLogout',
-    		'home'		: 'showHome',
-      		'*actions'	: 'showHome'
+      		'*actions'	: 'showDefault'
     	},
-    	showLogin: function() {
-			if(!this.isLoggedIn()) {
-				// initialize login view
-				this.loginView = new LoginView();
-				// render login view
-				this.loginView.render();
-			}
-    	},
-    	showLogout: function() {
-			// logout user from system
-			// logout user from facebook
-    	},
-    	showHome: function(action) {
-			if(this.isLoggedIn()) {
-				// render dynamic views
-				this.headerView.renderHome();
-				this.homeView.render();
-				this.footerView.render();
-			}
+    	showDefault: function() {
+			// render dynamic views
+			this.headerView.renderHome();
+			this.footerView.render();
+			this.mainView.render();
     	}
   	});
 

@@ -10,7 +10,7 @@ define([
     	el: $('#content'),
     	initialize: function() {
 			this.userCollection = new UserCollection();
-			this.userCollection.on('change', this.blah(), this);
+			//this.userCollection.bind('reset', console.log(this.userCollection));
 		},
     	render: function() {
     		console.log('rendering LoginView');
@@ -25,8 +25,6 @@ define([
     		FB.getLoginStatus(function(response) {
 				if (response.status === 'connected') {
 					console.log('user is connected to Facebook');
-					console.log(that.userCollection);
-					//window.location.href = "#/home";
 				} 
 				else if (response.status === 'not_authorized') {
 					console.log('user has not authorized the app');
@@ -44,9 +42,7 @@ define([
 				if (response.authResponse) {
 					console.log('user is now connected to Facebook');
 					// login user to system
-					that.userCollection.fetch();
 					// redirect to home
-					//window.location.href = "#/home";
 				} else {
 					console.log('login failed');
 				}
@@ -54,9 +50,6 @@ define([
 		},
 		authorizeAppOnFacebook: function() {
 			
-		},
-		blah: function() {
-			console.log(this.userCollection);
 		}
   	});
 

@@ -12,7 +12,7 @@ class Auth_Controller extends Base_Controller {
 	
 	public function get_status()
 	{
-		return Response::json(Auth::check());
+		return Response::json(array('status' => Auth::check()));
 	}
 	
 	public function get_login()
@@ -46,6 +46,9 @@ class Auth_Controller extends Base_Controller {
 			// if yes - log the user in
 			$user_id = User::get_user_id_by_fb_uid($fb_uid);
 			Auth::logout($user_id);
+		}
+		else {
+			Auth::logout(Auth::user()->id);
 		}
 		return Response::json(Auth::check());
 	}
