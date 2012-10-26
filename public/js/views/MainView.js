@@ -13,24 +13,20 @@ define([
     		var LoginStatus = Backbone.Collection.extend({
     			url: "/auth/status"
     		});
+    		// initialize instances
     		this.loginStatus = new LoginStatus();
-    		this.loginStatus.bind('reset', this.checkLoginStatus, this);
-    		
     		this.userCollection = new UserCollection();
+    		
+    		// initialize event bindings
+    		this.loginStatus.bind('reset', this.checkLoginStatus, this);
     		this.userCollection.bind('reset', this.render, this);
     		
+    		// initialize and render default template
     		this.template = loginTemplate;
-    	},
-    	render: function() {
-    		console.log('rendering MainView');
-			
-			this.loginStatus.fetch();
-			
-    		var compiledTemplate = _.template(this.template);
-    		this.$el.html(compiledTemplate);
+    		this.realRender();
     	},
     	events: {
-    		"click #login_button"	: "performLogin"
+    		"click #login_button"	: "attemptLogin"
     	},
     	checkLoginStatus: function() {
     		var that = this;
@@ -38,11 +34,11 @@ define([
     		var response = this.loginStatus.toJSON(); 
 			if(response.shift().status) {
 				this.template = homeTemplate;
-				this.render();
+				this.realRender();
 			}
     	},
-    	performLogin: function() {
-    		console.log('logging in');
+    	attemptLogin: function() {
+    		console.log('attempting to login');
 			var that = this;
 			FB.login(function(response) {
 				if (response.authResponse) {
@@ -54,7 +50,16 @@ define([
 					console.log('login failed');
 				}
 			});
-    	}
+    	},
+    	render: function() {
+    		console.log('rendering MainView');
+			// get login status from server
+			this.loginStatus.fetch();
+    	},
+    	realRender: function() {
+			var compiledTemplate = _.template(this.template);
+    		this.$el.html(compiledTemplate);
+		}
   	});
   	return MainView;
 });

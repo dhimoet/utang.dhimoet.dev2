@@ -20,14 +20,21 @@ define([
   		 * 	List of routes and handlers
   		 */
     	routes: {
-      		'*actions'	: 'showDefault'
+			'home/:action'			: 'showMain',
+			'transactions/:action'	: 'showMain',
+			'settings/:action'		: 'showMain',
+      		'*actions'				: 'showDefault'
     	},
     	showDefault: function() {
 			// render dynamic views
 			this.headerView.renderHome();
 			this.footerView.render();
 			this.mainView.render();
-    	}
+    	},
+    	showMain: function() {
+			// render dynamic views
+			this.mainView.render();
+		}
   	});
 
   	return {
