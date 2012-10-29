@@ -8,21 +8,26 @@ define([
   	var HeaderView = Backbone.View.extend({
     	el: $('#header'),
     	
-    	render: function(route) {
-    		console.log('rendering HeaderView');
+    	render: function(route, action) {
     		var data = {};
+    		if(typeof route == "undefined") {
+    			route = "";
+    		}
     		// display different types of header
     		switch(route) {
+    			case "":
+					this.$el.empty();
+    				break;
     			case "login":
-    				this.$el.remove();
+    				this.$el.empty();
     				break;
 				default:
-					data = {
+    				data = {
 						left_button: "Back",
 						left_button_href: "javascript:window.history.back()",
 		    			right_button: "Add",
 		    			right_button_href: "#/transaction/add",
-		    			page_title: "Home",
+		    			page_title: route,
 		    			page_title_href: "/",
 					};
 					this.realRender(data);
@@ -30,7 +35,7 @@ define([
     		}
     	},
     	realRender: function(data) {
-    		console.log('real rendering HeaderView');
+    		console.log('rendering HeaderView');
     		var compiledTemplate = _.template(headerTemplate, data);
     		this.$el.html(compiledTemplate);
     	}

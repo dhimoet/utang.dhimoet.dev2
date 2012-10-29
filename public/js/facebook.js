@@ -1,7 +1,7 @@
 window.fbAsyncInit = function() {
 	// init the FB JS SDK
 	FB.init({
-		appId      : '394799733886593', // App ID from the App Dashboard
+		appId      : '379108228831406', // App ID from the App Dashboard
 		channelUrl : '//utang.dhimoet.dev2/channel.php', // Channel File for x-domain communication
 		status     : true, // check the login status upon init?
 		cookie     : true, // set sessions cookies to allow your server to access the session?

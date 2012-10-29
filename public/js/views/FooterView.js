@@ -7,16 +7,27 @@ define([
 ], function($, _, Backbone, footerTemplate){
   	var FooterView = Backbone.View.extend({
     	el: $('#footer'),
+    	initialize: function() {
+    		
+    	},
     	render: function(route) {
     		console.log('rendering FooterView');
+    		if(typeof route == "undefined") {
+    			route = "";
+    		}
     		var compiledTemplate = _.template(footerTemplate);
     		// display different types of footer
     		switch(route) {
+    			case "":
+					this.$el.empty();
+    				break;
     			case "login":
-    				this.$el.remove()
+					this.$el.empty();
     				break;
 				default:
-					this.$el.html(compiledTemplate);
+					if(this.$el.html() == '') {
+						this.$el.html(compiledTemplate);
+					}
 					break;
     		}
     	},

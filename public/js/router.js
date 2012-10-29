@@ -43,6 +43,7 @@ define([
     	showMain: function(route, action, path) {
 			// render dynamic views
 			this.headerView.render(route, action);
+			this.footerView.render(route);
 			this.mainView.render(route, action, path);
 		},
 		showLogin: function() {
@@ -54,6 +55,7 @@ define([
 			// render dynamic views
 			this.headerView.render();
 			this.mainView.render();
+			this.footerView.render();
     	},
 		/**
 		 * 	Event handlers
@@ -65,6 +67,10 @@ define([
 				// if not logged in
 				console.log('redirecting to login page');
 				window.location.href = "#/login";
+			}
+			else if(window.location.hash == '') {
+				// if logged in and attempting to access root
+				window.location.href = "#/home";
 			}
 		}
   	});

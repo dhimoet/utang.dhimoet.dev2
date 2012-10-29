@@ -9,11 +9,19 @@ define([
   	var MainView = Backbone.View.extend({
     	el: $('#content'),
     	initialize: function() {
-    		// initialize and render default template
-    		this.template = loadingTemplate;
+    		
     	},
     	render: function(route, action, path) {
     		console.log('rendering MainView');
+    		// display different types of header
+    		switch(route) {
+    			case "home":
+    				this.template = homeTemplate;
+    				break;
+				default:
+					this.template = loadingTemplate;
+					break;
+    		}
 			var compiledTemplate = _.template(this.template);
     		this.$el.html(compiledTemplate);
     	}
