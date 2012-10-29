@@ -7,10 +7,18 @@ define([
 ], function($, _, Backbone, footerTemplate){
   	var FooterView = Backbone.View.extend({
     	el: $('#footer'),
-    	render: function() {
+    	render: function(route) {
     		console.log('rendering FooterView');
     		var compiledTemplate = _.template(footerTemplate);
-    		this.$el.html(compiledTemplate);
+    		// display different types of footer
+    		switch(route) {
+    			case "login":
+    				this.$el.remove()
+    				break;
+				default:
+					this.$el.html(compiledTemplate);
+					break;
+    		}
     	},
     	events: {
     		"click li>a"	: "onFooterClick"
